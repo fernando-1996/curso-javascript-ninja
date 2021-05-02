@@ -10,14 +10,27 @@ Os números devem ser de 1 a 10.
 Mostre esse array no console.
 */
 console.log( 'Number Objects Array:' );
-// ?
+var numberObjects = [
+  {number :1},
+  {number :2},
+  {number :3},
+  {number :4},
+  {number :5},
+  {number :6},
+  {number :7},
+  {number :8},
+  {number :9},
+  {number :10}
+];
+console.log(numberObjects);
 
 /*
 Crie um array chamado `justNumbers`, que terá como elementos somente os
 números do array criado acima. Mostre esse novo array no console.
 */
 console.log( '\nJust Numbers:' );
-// ?
+var justNumbers = [];
+
 
 /*
 Crie um novo array chamado `justMod2Or3`, que receberá do array criado acima
