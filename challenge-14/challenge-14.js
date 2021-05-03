@@ -30,6 +30,10 @@ números do array criado acima. Mostre esse novo array no console.
 */
 console.log( '\nJust Numbers:' );
 var justNumbers = [];
+numberObjects.forEach(function(item) {
+    justNumbers.push(item.number);
+});
+console.log(justNumbers);
 
 
 /*
@@ -38,7 +42,10 @@ somente os números que forem divisíveis por 2 ou 3. Mostre esse novo array
 no console.
 */
 console.log( '\nJust module of division by 2 or 3:' );
-// ?
+var justMod2Or3 = justNumbers.filter(function(item) {
+    return item % 2 == 0 || item %3 == 0;
+});
+console.log(justMod2Or3);
 
 /*
 Declare uma variável chamada operation que receba, do array criado acima,
@@ -49,7 +56,7 @@ O cálculo deve começar com zero.
 Mostre o resultado no console.
 */
 console.log( '\nOperation:' );
-// ?
+
 
 /*
 Faça o mesmo cálculo passado acima, mas começando do último item para o
@@ -68,20 +75,25 @@ infantil, onde você coloca a letra "P" antes de cada sílaba de uma palavra
 falada, como se você estivesse falando em código xD
 */
 console.log( '\nSeu nome na língua do "P":' );
-// ?
+var newName = ['fer', 'nan', 'do'];
+newName.forEach(function(item, index) {
+    newName[index] = "p" + item;
+});
+console.log(newName);
 
 /*
 Crie uma variável chamada `inversedName`, que reduzirá o array em uma string
 e atribuirá o seu nome invertido (usando o array criado acima).
 */
 console.log( '\nInversed Name:' );
-// ?
+var inversedName = newName.reverse().join('');
+console.log(inversedName);
 
 /*
 Mostre no console o array `numberObjects`.
 */
 console.log( '\nNumber objects' );
-// ?
+console.log(numberObjects);
 
 /*
 Verifique se existem em algum índice de numberObjects um objeto ìgual a
