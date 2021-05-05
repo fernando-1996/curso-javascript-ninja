@@ -29,6 +29,7 @@
 	  */
   
 	
+	var ajax = new XMLHttpRequest();
 	var $submit = document.querySelector("[type=submit");
 	var $logradouro = document.querySelector("[data-js=logradouro");
 	var $bairro = document.querySelector("[data-js=bairro");
@@ -38,13 +39,12 @@
 	var $status = document.querySelector("[data-js=status]");
 	
 	function initialize() {
-		$submit.addEventListener('click', onSubmit, false);
+		$submit.addEventListener('submit', onSubmit, false);
 	}
 	
 	function onSubmit(e) {
 		e.preventDefault();
 		var $cep = document.querySelector("[name=cep]");
-		var ajax = new XMLHttpRequest();
 		ajax.open('GET', 'https://viacep.com.br/ws/' + $cep.value.replace(/\D+/g, '') + '/json/');
 		ajax.send();
 		
@@ -57,10 +57,10 @@
 		}, false);
 	}
 	
-	function handleResponse(ajax) {
-		var data = JSON.parse(ajax.responseText);
-		if (data.erro === true)
-			handleError();
+	function handleResponse() {
+		var data = parseData();
+		if (data.erro === true || data === null)
+			handleError(data);
 		else
 			handleSuccess(data);
 		
@@ -75,7 +75,7 @@
 		$cep.value = data.cep;
 	}
 	
-	function handleError() {
+	function handleError(data) {
 		$status.value = "Não encontramos o endereço para o CEP " + $cep.value + ".";
 		$logradouro.value = "";
 		$bairro.value = "";
@@ -83,6 +83,16 @@
 		$cidade.value = "";
 		$cep.value = "";
 		return;
+	}
+	
+	function parseData() {
+		var result;
+		try {
+			result = JSON.parse(ajax.responseText);
+		} catch (e) {
+			result = null;
+		}
+		return result;
 	}
   
 	function isRequestOk(ajax) {
